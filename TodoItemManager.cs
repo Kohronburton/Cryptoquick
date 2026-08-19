@@ -23,6 +23,10 @@ namespace CryptoQuick
 
 		private TodoItemManager ()
 		{
+			if (string.IsNullOrWhiteSpace(accountURL) || string.IsNullOrWhiteSpace(accountKey))
+				throw new InvalidOperationException(
+					"Set CRYPTOQUICK_COSMOS_URL and CRYPTOQUICK_COSMOS_KEY before starting the app.");
+
 			client = new DocumentClient (new System.Uri (accountURL), accountKey);
 		}
 
